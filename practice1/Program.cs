@@ -7,11 +7,9 @@ class Program
 {
     static void Main()
     {
-        int amountOfValidPasswords = 0;
+        string content = ReadFile();
 
-        var content = ReadFile();
-
-        amountOfValidPasswords = CountAmountOfValidPasswords(content);
+        int amountOfValidPasswords = CountAmountOfValidPasswords(content);
 
         Console.WriteLine("Amount of valid passwords is " + amountOfValidPasswords);
     }
@@ -20,21 +18,16 @@ class Program
     {
         string filePath, fileContent;
 
-        // User should enter the file, which exists in the same directory as Program.cs
+        // User should enter name of the file, which is located in the same directory as Program.cs
         do
         {
-            Console.WriteLine("Enter the file path: ");
+            Console.WriteLine("Enter file name: ");
 
             filePath = "../../../" + Console.ReadLine();
         } 
         while (!File.Exists(filePath));
 
         fileContent = File.ReadAllText(filePath);
-        //}
-        //catch (IOException)
-        //{
-        //    Console.WriteLine("An error occurred while reading the file!");
-        //}
 
         return fileContent;
     }
@@ -76,9 +69,7 @@ class Program
         foreach (char c in password)
         {
             if (c == symbol)
-            {
                 count++;
-            }
         }
 
         var result = count >= min && count <= max;
